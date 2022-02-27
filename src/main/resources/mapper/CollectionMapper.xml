@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sofa.mapper.CollectionMapper">
+
+    <insert id="insert" parameterType="com.sofa.entity.Collection">
+        insert into collection(userId,plantName,url,saveTime) values (#{userId},#{plantName},#{url},#{saveTime})
+    </insert>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        delete from collection where id = #{id}
+    </delete>
+
+    <select id="findById" resultType="com.sofa.entity.Collection" parameterType="java.lang.Long">
+        select * from collection where userId=#{id}
+    </select>
+
+
+</mapper>

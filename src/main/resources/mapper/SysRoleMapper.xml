@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="com.sofa.mapper.SysRoleMapper">
+
+    <resultMap id="roleMap" type="com.sofa.entity.SysRole">
+        <id column="id" property="id"></id>
+        <result column="label" property="label"></result>
+        <result column="code" property="code"></result>
+        <result column="status" property="status"></result>
+<!--        <collection property="menus" ofType="com.sofa.entity.SysMenu" column="id"></collection>-->
+<!--        <collection property="permissions" ofType="com.sofa.entity.SysPermission" column="id"></collection>-->
+    </resultMap>
+
+
+    <select id="findPage" resultMap="roleMap">
+        select * from sys_role
+        <if test="queryString !=null and queryString.length>0">
+            where label like concat('%' , #{queryString},'%') or code like concat('%' , #{queryString},'%')
+        </if>
+    </select>
+
+    <insert id="insert" parameterType="com.sofa.entity.SysRole" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO sys_role(label,code ,status)
+        VALUES
+            (#{label},#{code},#{status})
+    </insert>
+
+
+    <delete id="delete" parameterType="java.lang.Long">
+        delete from sys_role where id = #{id}
+    </delete>
+
+    <update id="update" parameterType="com.sofa.entity.SysRole">
+        update sys_role
+        <set>
+            <if test="label!=null">
+                label=#{label},
+            </if>
+            <if test="code!=null">
+                code=#{code},
+            </if>
+            <if test="status!=null">
+                status=#{status}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <select id="findById" resultType="com.sofa.entity.SysRole">
+        select * from sys_role where id =#{id}
+    </select>
+
+
+    <!--删除角色拥有的菜单信息-->
+    <delete id="deleteMenuById" parameterType="java.lang.Long">
+        delete from roles_menus where role_id=#{roleId}
+    </delete>
+
+    <!--删除角色拥有的权限信息-->
+    <delete id="deletePermissionById" parameterType="java.lang.Long">
+        delete from roles_permissions where role_id=#{roleId}
+    </delete>
+
+    <insert id="insertPermission">
+        insert into roles_permissions values (#{roleId},#{permissionId})
+    </insert>
+
+    <insert id="insertMenus">
+        insert into roles_menus values (#{roleId},#{menusId})
+    </insert>
+
+    <select id="findByLabel" resultType="com.sofa.entity.SysRole">
+        select * from sys_role where label=#{code}
+    </select>
+    <select id="findAll" resultType="com.sofa.entity.SysRole">
+        select id,label from sys_role where status=1
+    </select>
+</mapper>

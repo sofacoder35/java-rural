@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sofa.mapper.NewsMapper">
+<!--分页查询权限数据-->
+    <select id="findPage" resultType="com.sofa.entity.News">
+        select * from news
+        <if test="queryString !=null and queryString.length>0">
+            where title like concat('%' , #{queryString},'%') or content like concat('%' , #{queryString},'%')
+        </if>
+    </select>
+
+
+    <delete id="delete" parameterType="java.lang.Long">
+        delete from news where id = #{id}
+    </delete>
+
+    <update id="update" parameterType="com.sofa.entity.News">
+        update news
+        <set>
+            <if test="title!=null">
+                title=#{title},
+            </if>
+            <if test="content!=null">
+                content=#{content},
+            </if>
+            <if test="updateTime!=null">
+                update_time=#{updateTime},
+            </if>
+            <if test="updateName!=null">
+                update_name=#{updateName},
+            </if>
+            <if test="imageUrl!=null">
+                imageUrl=#{imageUrl}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <select id="findAll" resultType="com.sofa.entity.News">
+        select * from news
+    </select>
+
+
+</mapper>

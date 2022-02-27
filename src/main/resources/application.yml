@@ -1,0 +1,55 @@
+server:
+  port: 8000
+
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: sport
+  main:
+    allow-circular-references: true
+
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  # Mybatis扫描包
+  type-aliases-package: com.sofa.entity
+  configuration:
+    # 是否开启驼峰转换
+    map-underscore-to-camel-case: true
+    # 控制台打印sql
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+
+jwt:
+  tokenHeader: Authorization
+  secret: sofa
+  expiration: 1800000
+  tokenHead: 'Bearer '
+
+qiniu:
+    accessKey: R3xY24STDvdMd_JzIz5WOANEy6OME-6jqtRBJ6rp
+    secretKey: gEWxZeMDcqXwSs1HMS6QFDhxqN10JwO74mvbL7Tc
+    bucket: sofa-sport
+    baseUrl: http://r6ikcsmmm.hn-bkt.clouddn.com/
+
+aliyun:
+    accessKey: LTAI5tJ1hBeSqMHAZA1aAvAk
+    secretKey: G7pIcPib35PGYl5oACNusORqgymrnP
+    signName: 阿里云短信测试
+    templateCode: SMS_154950909
+
+mini:
+  appid: wx5ad2521a63341568
+  secret: e7be82fe73701976ec97199155642d60
+
+baidubce:
+  AppID: 25575933
+  apiKey: GyiD2vNjTpr1LbHZb0a9Q3cV
+  secretKey: GLiCezOEmaP9yBV16UdUxIKgrQAa4xtZ
+
+tencent:
+  mapKey: B7RBZ-XLME6-O5FS4-E3MF3-ALWTF-TYBZG
