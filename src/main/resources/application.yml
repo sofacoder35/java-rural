@@ -31,24 +31,24 @@ jwt:
   tokenHead: 'Bearer '
 
 qiniu:
-    accessKey: R3xY24STDvdMd_JzIz5WOANEy6OME-6jqtRBJ6rp
+    accessKey: ***
     secretKey: gEWxZeMDcqXwSs1HMS6QFDhxqN10JwO74mvbL7Tc
     bucket: sofa-sport
     baseUrl: http://r6ikcsmmm.hn-bkt.clouddn.com/
 
 aliyun:
-    accessKey: LTAI5tJ1hBeSqMHAZA1aAvAk
+    accessKey:****
     secretKey: G7pIcPib35PGYl5oACNusORqgymrnP
     signName: 阿里云短信测试
     templateCode: SMS_154950909
 
 mini:
-  appid: wx5ad2521a63341568
+  appid:****
   secret: e7be82fe73701976ec97199155642d60
 
 baidubce:
   AppID: 25575933
-  apiKey: GyiD2vNjTpr1LbHZb0a9Q3cV
+  apiKey: ****
   secretKey: GLiCezOEmaP9yBV16UdUxIKgrQAa4xtZ
 
 tencent:
